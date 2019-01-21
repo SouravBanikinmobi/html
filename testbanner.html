@@ -1,0 +1,106 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ad</title>
+  <style type="text/css">
+    #adwrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+      body {
+      background: #F4F4F4;
+      font: 12px Verdana, sans-serif;
+      color: #000;
+      margin: 0;
+    }
+    #skipbutton {
+      float: right;
+      display: block;
+      padding: 15px;
+      margin-right: 15px;
+      background: #F4F4F4;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    #skipbutton img {
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
+    #main {
+      min-width: 300px;
+      margin: 30px auto 0 auto;
+    }
+
+  </style>
+  <script>
+  window.getAdDimensions = (function() {
+    // Refer to https://support.google.com/adsense/answer/9739?hl=en for available formats
+    var allowedFormats = [
+      [300, 250]
+    ];
+
+    return function() {
+      var maxWidth = window.innerWidth;
+      var maxHeight = window.innerHeight - 30; // reserve 30px for hide button
+
+      var selectedIndex = 0;
+      for (var i = 0; i < allowedFormats.length; i++) {
+        if (allowedFormats[i][0] <= maxWidth && allowedFormats[i][1] <= maxHeight) {
+          selectedIndex = i;
+        } else {
+          break;
+        }
+      }
+      return allowedFormats[selectedIndex];
+    };
+  })();
+  window.addCSS = function(cssText) {
+    var styleEl = document.createElement("style");
+    styleEl.setAttribute("type", "text/css");
+    styleEl.innerHTML = cssText;
+    document.head.appendChild(styleEl);
+  };
+  window.getUrlParameter = function(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
+
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("skipbutton").href = getUrlParameter("continue");
+  });
+  </script>
+</head>
+<body>
+    <div id="inmobi-ad">
+        <script type="text/javascript">
+          var inmobi_conf = {
+            siteid: "f2dc2709889e430fa5d0c2fa7235060d", 
+            slot: "-1", 
+            adtype: "int", 
+            limitadtracking: "0", 
+            uIdMap: {"GPID":"bfe93d8d-c564-4a0f-be3c-474ef647a0c6"},
+            targetWindow: "_top", 
+            onError: function(code, div) {
+		document.writeln("Error, code: " + code + "; div: " + div + "<br>");
+		document.writeln("inmobi_conf.uIdMap[GPID]: " + inmobi_conf.uIdMap["GPID"]);
+		if (code=="nfr"){}
+            }
+          };
+        </script>
+        <script type="text/javascript" src="https://i.l.inmobicdn.net/sdk/jsac/p2/postscribe.min.js"></script>
+        <script type="text/javascript" src="https://i.l.inmobicdn.net/sdk/jsac/p2/inmobi.secure.js"></script>
+   <a id="skipbutton" referrerpolicy="no-referrer" href="server:refresh">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAQAAACROWYpAAAAkUlEQVR42qXVwQmAMAxGYc8d0fM/RN2gU7laRYgI8oAnTS8N5AMCIdnuSMu+/Ygk7fm2nJnpmo7MnGkvnY4XncWzV2J40Xp3q+mWZ0AlcEWROyq4oMAFFRyo4Uw1B+o5UMEFdbyox0NgRZkrylzQni45jwRzRZlLylxQwQUFLqjgSJkfn8pkYfWuLP2lc7N06C6hCLPj3GAtQAAAAABJRU5ErkJggg%3D%3D" alt="Close" />
+  </a>
+  </div>
+</body>
+</html>
